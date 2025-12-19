@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>ITS IF WORK DO NOT TOUCH IT part 2</title>
+</head>
+<body>
+    <script>
+        let hargabuku = 5000;
+        let PleaseWork = [];
+
+        let input = parseInt(prompt("Jumlah Pelanggan?"));
+        for (let i = 1; i <= input; i++) {
+            let buku = parseInt(prompt(`TOtal buku yang di beli di pelanggan ke-${i}`));
+            let totalharga = 0;
+            let diskontotal = "";
+
+            if (buku <= 100) {
+                totalharga = buku * hargabuku;
+                diskontotal = "Tanpa dapat Diskon";
+            } 
+            else if (buku <= 200) {
+                totalharga = (100 * hargabuku * 0.95) + ((buku - 100) * hargabuku * 0.85);
+				diskontotal = "Diskon Kecil";
+            } 
+            else {
+			totalharga = (100 * hargabuku * 0.93) + (100 * hargabuku * 0.83) + ((buku - 200) * hargabuku * 0.73);
+			diskontotal = "Diskon Besar";
+            }
+
+            PleaseWork.push({
+                pembeli: i,
+                jumlahBuku: buku,
+                jenisDiskon: diskontotal,
+                total: totalharga
+            });
+
+            console.log(`Pembeli ke-${i}`);
+        }
+
+        let pendapatan = 0;
+        let diskonKecil = 0;
+        let diskonBesar = 0;
+
+        PleaseWork.forEach((t) => {
+            pendapatan += t.total;
+            if (t.jenisDiskon === "diskon Kecil") {
+                diskonKecil++;
+            } else if (t.jenisDiskon === "Diskon Besar") {
+                diskonBesar++;
+            }
+        });
+
+        let RATARATAAAAAAAAAAAA = pendapatan / input;
+
+        console.log("========== TABLE ==========");
+        console.table(PleaseWork, ["pembeli", "jumlahBuku", "jenisDiskon", "total"]);
+
+        console.log("Total Pendapatan: Rp " + pendapatan.toLocaleString('id-ID'));
+        console.log("Rata-rata Pendapatan: Rp " + RATARATAAAAAAAAAAAA.toLocaleString('id-ID'));
+        console.log("Jumlah pendapatan Diskon Kecil " + diskonKecil);
+        console.log("Jumlah pendapatan Diskon Besar " + diskonBesar);
+    </script>
+</body>
+</html>
